@@ -8,8 +8,6 @@ body {
   cursor: url("https://cur.cursors-4u.net/cursors/cur-9/cur817.cur"), auto;
   position: relative;
   overflow-x: hidden; /* Mencegah overflow horizontal */
-  padding-top: 100px; /* Memberi ruang untuk strip foto atas */
-  padding-bottom: 100px; /* Memberi ruang untuk strip foto bawah */
   box-sizing: border-box;
 }
 
@@ -18,7 +16,7 @@ body {
   max-width: 90%;
   width: 100%;
   padding: 20px;
-  margin: 0 auto;
+  margin: 60px auto; /* Margin atas dan bawah untuk menghindari strip foto */
   position: relative;
   z-index: 15; /* Pastikan konten di atas strip foto */
 }
@@ -41,6 +39,9 @@ body {
   border-radius: 12px;
   border: 2px solid #ff69b4;
   display: block;
+  background-color: rgba(255, 255, 255, 0.8); /* Background semi-transparan */
+  padding: 10px; /* Padding untuk border */
+  box-sizing: border-box;
 }
 
 .result-gif {
@@ -77,6 +78,54 @@ body {
   .result-gif {
     max-width: 280px;
   }
+  .container {
+    margin: 50px auto; /* Margin lebih kecil untuk perangkat mobile */
+  }
+}
+
+/* Styling untuk teks pertanyaan */
+#question-text {
+  color: plum;
+  background-color: rgba(255, 255, 255, 0.8); /* Background semi-transparan */
+  border: 2px solid #ff69b4; /* Border pink */
+  border-radius: 12px;
+  padding: 15px;
+  margin: 10px auto;
+  max-width: 90%;
+  box-sizing: border-box;
+}
+
+/* Styling untuk feedback jawaban */
+#answer-feedback {
+  color: white;
+  font-size: 1.2em;
+  margin-top: 10px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 2px solid;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#answer-feedback.correct {
+  background-color: rgba(
+    144,
+    238,
+    144,
+    0.8
+  ); /* Hijau muda untuk jawaban benar */
+  border-color: #32cd32; /* Border hijau */
+}
+
+#answer-feedback.incorrect {
+  background-color: rgba(
+    255,
+    182,
+    193,
+    0.8
+  ); /* Merah muda untuk jawaban salah */
+  border-color: #ff4040; /* Border merah */
 }
 
 /* Rest of your existing styles */
@@ -161,11 +210,11 @@ button:hover::after {
   }
 }
 
-/* Styling untuk strip foto */
+/* Styling untuk strip foto yang lebih kecil */
 .photo-wrapper {
   width: 100%;
   overflow: hidden;
-  height: 90px;
+  height: 60px; /* Dikurangi dari 90px untuk membuat strip lebih kecil */
   position: fixed;
   left: 0;
   z-index: 10; /* Tetap di bawah konten utama */
@@ -186,12 +235,12 @@ button:hover::after {
 }
 
 .photo-strip img {
-  height: 80px;
-  width: 80px;
+  height: 50px; /* Dikurangi dari 80px */
+  width: 50px; /* Dikurangi dari 80px */
   object-fit: cover;
   margin: 5px;
-  border-radius: 10px;
-  border: 3px solid #ffb6c1;
+  border-radius: 8px; /* Sedikit diperkecil untuk proporsi */
+  border: 2px solid #ffb6c1; /* Border sedikit lebih tipis */
   flex-shrink: 0;
 }
 
@@ -255,36 +304,36 @@ button:hover::after {
 
 /* Container for floating hearts */
 #hearts-container {
-  position: fixed; /* Changed to fixed so hearts stay in the viewport */
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  pointer-events: none; /* Ensure hearts don't interfere with interactions */
-  z-index: 5; /* Lowered z-index to be behind photo strips (z-index: 10) but above background */
+  pointer-events: none;
+  z-index: 5;
 }
 
 /* Style for each heart */
 .heart {
   position: absolute;
-  font-size: 24px; /* Size of the emote */
-  animation: float 10s linear infinite; /* Consistent animation duration */
-  opacity: 0.8; /* Slightly transparent for a soft effect */
+  font-size: 24px;
+  animation: float 10s linear infinite;
+  opacity: 0.8;
 }
 
 /* Updated float animation */
 @keyframes float {
   0% {
-    transform: translateY(100vh) translateX(0) scale(0.8); /* Start at bottom of viewport */
+    transform: translateY(100vh) translateX(0) scale(0.8);
     opacity: 0.8;
   }
   50% {
     opacity: 1;
-    transform: translateY(50vh) translateX(calc(20px * var(--drift))) scale(1); /* Slight horizontal drift */
+    transform: translateY(50vh) translateX(calc(20px * var(--drift))) scale(1);
   }
   100% {
     transform: translateY(-10vh) translateX(calc(40px * var(--drift)))
-      scale(1.2); /* End above viewport */
+      scale(1.2);
     opacity: 0;
   }
 }
@@ -293,23 +342,23 @@ button:hover::after {
 #love-message {
   background-color: rgba(255, 255, 255, 0.9);
   color: #ff69b4;
-  padding: 25px; /* Increased padding for better spacing */
+  padding: 25px;
   margin-top: 20px;
-  margin-bottom: 20px; /* Added margin-bottom to avoid overlap with bottom photo strip */
+  margin-bottom: 20px;
   border-radius: 15px;
   font-family: "Comic Sans MS";
   text-align: left;
-  font-size: 1em; /* Slightly increased font size for readability */
-  line-height: 1.5; /* Added line-height for better text spacing */
-  overflow-wrap: break-word; /* Prevent text overlap by breaking long words */
-  max-width: 100%; /* Ensure it doesn't exceed the container width */
-  box-sizing: border-box; /* Include padding in width calculation */
+  font-size: 1em;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Ensure the image inside love-message is centered and fits well */
 #love-message img {
   display: block;
-  margin: 15px auto; /* Center the image with auto margins */
-  max-width: 100%; /* Ensure image doesn't overflow container */
+  margin: 15px auto;
+  max-width: 100%;
   height: auto;
 }
