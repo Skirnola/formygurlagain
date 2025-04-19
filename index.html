@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mengenang Masa Lalu Kitaaa</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Top Photo Strip -->
+    <div class="photo-strip top-strip">
+      <div class="photo-strip-inner">
+        <img
+          src="assets/tanggalibay.jpeg"
+          alt="Tanggal Lahir Ibay"
+          class="strip-photo"
+        />
+        <img
+          src="assets/tgljadian.jpeg"
+          alt="Tanggal Jadian"
+          class="strip-photo"
+        />
+        <img
+          src="assets/warnaibay.jpeg"
+          alt="Warna Favorit Ibay"
+          class="strip-photo"
+        />
+        <img src="assets/winskie.jpeg" alt="Foto Winskie" class="strip-photo" />
+        <img
+          src="assets/makananibay.jpeg"
+          alt="Makanan Kesukaan Ibay"
+          class="strip-photo"
+        />
+        <img
+          src="assets/sygwindi.jpeg"
+          alt="Sayang Windi"
+          class="strip-photo"
+        />
+        <img
+          src="assets/palingseringmamdimana.jpeg"
+          alt="Paling Sering Makan"
+          class="strip-photo"
+        />
+        <img src="assets/terserah.jpeg" alt="Terserah" class="strip-photo" />
+        <img src="assets/benci.jpeg" alt="Benci Ibay" class="strip-photo" />
+        <img src="assets/hug.jpeg" alt="Hug" class="strip-photo" />
+        <!-- Duplicate for seamless loop -->
+        <img
+          src="assets/tanggalibay.jpeg"
+          alt="Tanggal Lahir Ibay"
+          class="strip-photo"
+        />
+        <img
+          src="assets/tgljadian.jpeg"
+          alt="Tanggal Jadian"
+          class="strip-photo"
+        />
+        <img
+          src="assets/warnaibay.jpeg"
+          alt="Warna Favorit Ibay"
+          class="strip-photo"
+        />
+        <img src="assets/winskie.jpeg" alt="Foto Winskie" class="strip-photo" />
+        <img
+          src="assets/makananibay.jpeg"
+          alt="Makanan Kesukaan Ibay"
+          class="strip-photo"
+        />
+        <img
+          src="assets/sygwindi/jpeg"
+          alt="Sayang Windi"
+          class="strip-photo"
+        />
+        <img
+          src="assets/palingseringmamdimana.jpeg"
+          alt="Paling Sering Makan"
+          class="strip-photo"
+        />
+        <img src="assets/terserah.jpeg" alt="Terserah" class="strip-photo" />
+        <img src="assets/benci.jpeg" alt="Benci Ibay" class="strip-photo" />
+        <img src="assets/hug.jpeg" alt="Hug" class="strip-photo" />
+      </div>
+    </div>
+
+    <div id="hearts-container"></div>
+
+    <div class="container" id="welcome-screen">
+      <img
+        id="welcome-gif"
+        src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXZjcXJzMjF5NDA5eXR0ZGlqNGJ4ZHlkNWJhMGs0dnNyMHM1bndzdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/c76IJLufpNwSULPk77/giphy.gif"
+        alt="Welcome GIF"
+        class="welcome-gif"
+      />
+      <h1>Tebak Tebakann 💖</h1>
+      <button id="start-btn">Mulai Yaa 🥺👉👈</button>
+    </div>
+
+    <div class="container hidden" id="quiz-container">
+      <h2 id="question-text"></h2>
+      <img id="question-image" class="question-image hidden" />
+      <div id="answer-buttons" class="btn-container"></div>
+    </div>
+
+    <div class="container hidden" id="result-screen">
+      <h2 id="result-message"></h2>
+      <p>Skormu: <span id="score"></span>/10</p>
+      <button onclick="location.reload()">Main Lagi ❤️</button>
+      <img id="result-gif" src="" alt="" class="result-gif" />
+    </div>
+
+    <!-- Bottom Photo Strip -->
+    <div class="photo-strip bottom-strip">
+      <div class="photo-strip-inner">
+        <img
+          src="assets/tanggalibay.jpeg"
+          alt="Tanggal Lahir Ibay"
+          class="strip-photo"
+        />
+        <img
+          src="assets/tgljadian.jpeg"
+          alt="Tanggal Jadian"
+          class="strip-photo"
+        />
+        <img
+          src="assets/warnaibay.jpeg"
+          alt="Warna Favorit Ibay"
+          class="strip-photo"
+        />
+        <img src="assets/winskie.jpeg" alt="Foto Winskie" class="strip-photo" />
+        <img
+          src="assets/makananibay.jpeg"
+          alt="Makanan Kesukaan Ibay"
+          class="strip-photo"
+        />
+        <img
+          src="assets/sygwindi.jpeg"
+          alt="Sayang Windi"
+          class="strip-photo"
+        />
+        <img
+          src="assets/palingseringmamdimana.jpeg"
+          alt="Paling Sering Makan"
+          class="strip-photo"
+        />
+        <img src="assets/terserah.jpeg" alt="Terserah" class="strip-photo" />
+        <img src="assets/benci.jpeg" alt="Benci Ibay" class="strip-photo" />
+        <img src="assets/hug.jpeg" alt="Hug" class="strip-photo" />
+        <!-- Duplicate for seamless loop -->
+        <img
+          src="assets/tanggalibay.jpeg"
+          alt="Tanggal Lahir Ibay"
+          class="strip-photo"
+        />
+        <img
+          src="assets/tgljadian.jpeg"
+          alt="Tanggal Jadian"
+          class="strip-photo"
+        />
+        <img
+          src="assets/warnaibay.jpeg"
+          alt="Warna Favorit Ibay"
+          class="strip-photo"
+        />
+        <img src="assets/winskie.jpeg" alt="Foto Winskie" class="strip-photo" />
+        <img
+          src="assets/makananibay.jpeg"
+          alt="Makanan Kesukaan Ibay"
+          class="strip-photo"
+        />
+        <img
+          src="assets/sygwindi.jpeg"
+          alt="Sayang Windi"
+          class="strip-photo"
+        />
+        <img
+          src="assets/palingseringmamdimana.jpeg"
+          alt="Paling Sering Makan"
+          class="strip-photo"
+        />
+        <img src="assets/terserah.jpeg" alt="Terserah" class="strip-photo" />
+        <img src="assets/benci.jpeg" alt="Benci Ibay" class="strip-photo" />
+        <img src="assets/hug.jpeg" alt="Hug" class="strip-photo" />
+      </div>
+    </div>
+
+    <!-- Add audio element for autoplay song -->
+    <audio id="background-music" autoplay loop>
+      <source src="assets/gluesong.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="script.js"></script>
+  </body>
+</html>
