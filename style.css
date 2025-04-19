@@ -1,22 +1,26 @@
-/* Update body to allow scrolling and grow with content */
+/* Update body untuk mendukung scrolling dan konten yang dinamis */
 body {
   margin: 0;
   font-family: "Comic Sans MS", sans-serif;
   background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: 100vh;
   text-align: center;
   cursor: url("https://cur.cursors-4u.net/cursors/cur-9/cur817.cur"), auto;
   position: relative;
-  overflow: auto;
+  overflow-x: hidden; /* Mencegah overflow horizontal */
+  padding-top: 100px; /* Memberi ruang untuk strip foto atas */
+  padding-bottom: 100px; /* Memberi ruang untuk strip foto bawah */
+  box-sizing: border-box;
 }
 
+/* Konten utama dengan margin untuk menghindari strip foto */
 .container {
   max-width: 90%;
   width: 100%;
   padding: 20px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 15; /* Pastikan konten di atas strip foto */
 }
 
 /* Image styles optimized for mobile */
@@ -157,13 +161,14 @@ button:hover::after {
   }
 }
 
+/* Styling untuk strip foto */
 .photo-wrapper {
   width: 100%;
   overflow: hidden;
   height: 90px;
   position: fixed;
   left: 0;
-  z-index: 10;
+  z-index: 10; /* Tetap di bawah konten utama */
   background: transparent;
 }
 
