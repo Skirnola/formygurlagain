@@ -134,14 +134,14 @@ function selectAnswer(answer) {
   const feedback = document.createElement("p");
   feedback.id = "answer-feedback";
   feedback.style.color = "white";
-  feedback.style.fontSize = "1.2em";
-  feedback.style.marginTop = "10px";
 
   if (answer === correct) {
     score++;
     feedback.textContent = "YAPP BETULL 💖";
+    feedback.classList.add("correct"); // Tambah kelas untuk jawaban benar
   } else {
-    feedback.textContent = "YAHH SALAHH 😣";
+    feedback.textContent = "YAHH SALAH 😣";
+    feedback.classList.add("incorrect"); // Tambah kelas untuk jawaban salah
   }
 
   quizContainer.appendChild(feedback);
