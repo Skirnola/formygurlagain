@@ -9,6 +9,8 @@ const resultMessage = document.getElementById("result-message");
 const scoreDisplay = document.getElementById("score");
 const welcomeGif = document.getElementById("welcome-gif");
 
+const loveEmotes = ["❤️", "💖", "💕", "💘", "💝", "💗", "💓", "💞", "💌"];
+
 const questions = [
   {
     question: "Kapan tanggal lahir ibay?",
@@ -87,9 +89,8 @@ startBtn.addEventListener("click", () => {
   showQuestion();
   welcomeGif.classList.remove("hidden");
   welcomeGif.src =
-    "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXZjcXJzMjF5NDA5eXR0ZGlqNGJ4ZHlkNWJhMGs0dnNyMHM1bndzdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/c76IJLufpNwSULPk77/giphy.gif"; // Welcome GIF
+    "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXZjcXJzMjF5NDA5eXR0ZGlqNGJ4ZHlkNWJhMGs0dnNyMHM1bndzdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/c76IJLufpNwSULPk77/giphy.gif";
 
-  // Play background music on click to bypass autoplay restrictions
   const audio = document.getElementById("background-music");
   audio.play().catch((error) => {
     console.log("Autoplay blocked:", error);
@@ -104,6 +105,12 @@ function showQuestion() {
   if (q.image) {
     questionImage.src = q.image;
     questionImage.classList.remove("hidden");
+    if (q.imageStyle) {
+      Object.assign(questionImage.style, q.imageStyle);
+    } else {
+      questionImage.style.width = "";
+      questionImage.style.height = "";
+    }
   } else {
     questionImage.classList.add("hidden");
   }
@@ -118,56 +125,86 @@ function showQuestion() {
 
 function resetState() {
   answerButtons.innerHTML = "";
+  const feedback = document.getElementById("answer-feedback");
+  if (feedback) feedback.remove();
 }
 
 function selectAnswer(answer) {
   const correct = questions[currentQuestion].correct;
+  const feedback = document.createElement("p");
+  feedback.id = "answer-feedback";
+  feedback.style.color = "white";
+  feedback.style.fontSize = "1.2em";
+  feedback.style.marginTop = "10px";
+
   if (answer === correct) {
     score++;
-  }
-  currentQuestion++;
-  if (currentQuestion < questions.length) {
-    showQuestion();
+    feedback.textContent = "YAPP BETULL 💖";
   } else {
-    showResult();
+    feedback.textContent = "YAHH SALAHH 😣";
   }
+
+  quizContainer.appendChild(feedback);
+
+  const buttons = answerButtons.getElementsByTagName("button");
+  for (let btn of buttons) {
+    btn.disabled = true;
+  }
+
+  setTimeout(() => {
+    currentQuestion++;
+    if (currentQuestion < questions.length) {
+      showQuestion();
+    } else {
+      showResult();
+    }
+  }, 3000);
 }
 
 function showResult() {
   quizContainer.classList.add("hidden");
   resultScreen.classList.remove("hidden");
   scoreDisplay.textContent = score;
-  resultMessage.textContent =
-    score >= 7
-      ? "Yayyy berarti masi sayang sama aku 💖"
-      : "DIHHH UDA GA SAYANG INIMA, ULANG LAGI 😤";
 
-  // Set the result GIF
   const resultGif = document.getElementById("result-gif");
-  resultGif.src =
-    score >= 7
-      ? "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHVleDhhMnlhdzVucjV4d2FnczlhcWUxNGgyaWhiZnEwNW45end0NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RLEdq1A9PT0BZo27s3/giphy.gif"
-      : "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2Jra2Q4bGhndjByNzJ4ZG4zYjJpNThhM2JvMG4xNjQyODl4ZzJsNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/aNFT7eG2rIKK715uLk/giphy.gif";
+  const loveSection = document.getElementById("love-button-section");
 
-  // Apply vertical layout for score <= 7
+  if (score >= 7) {
+    resultMessage.textContent = "Yayyy berarti masi sayang sama aku 💖";
+    resultGif.src =
+      "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHVleDhhMnlhdzVucjV4d2FnczlhcWUxNGgyaWhiZnEwNW45end0NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RLEdq1A9PT0BZo27s3/giphy.gif";
+    loveSection.classList.remove("hidden");
+  } else {
+    resultMessage.textContent = "DIHHH UDA GA SAYANG INIMA, ULANG LAGI 😤";
+    resultGif.src =
+      "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2Jra2Q4bGhndjByNzJ4ZG4zYjJpNThhM2JvMG4xNjQyODl4ZzJsNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/aNFT7eG2rIKK715uLk/giphy.gif";
+  }
+
   if (score <= 7) {
     resultScreen.classList.add("vertical-result");
   }
+
+  document.getElementById("love-button").addEventListener("click", () => {
+    const loveMessage = document.getElementById("love-message");
+    loveMessage.classList.remove("hidden");
+  });
 }
 
-// Floating Hearts Animation
+// Updated Floating Hearts Animation
 function createHearts() {
   const heartsContainer = document.getElementById("hearts-container");
   setInterval(() => {
     const heart = document.createElement("div");
     heart.classList.add("heart");
-    heart.style.left = `${Math.random() * 100}vw`;
-    heart.style.animationDuration = `${8 + Math.random() * 4}s`;
+    heart.textContent =
+      loveEmotes[Math.floor(Math.random() * loveEmotes.length)]; // Random love emote
+    heart.style.left = `${Math.random() * 100}vw`; // Random horizontal position
+    heart.style.setProperty("--drift", Math.random() > 0.5 ? 1 : -1); // Random drift direction (left or right)
     heartsContainer.appendChild(heart);
     setTimeout(() => {
-      heart.remove();
-    }, 12000);
-  }, 1000);
+      heart.remove(); // Remove heart after animation completes
+    }, 10000); // Match the animation duration (10s)
+  }, 500); // Create a new heart every 500ms for a steady flow
 }
 
 document.addEventListener("DOMContentLoaded", createHearts);
